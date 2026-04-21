@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N4 建設日本語 | RC Haus</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif,Arial;background:#f8f6f1;color:#1a1a2e}
+.hero{background:#1a1a2e;color:white;padding:2.5rem 1.5rem 2rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-30px;right:-30px;width:160px;height:160px;border-radius:50%;border:1px solid rgba(200,169,110,0.15)}
+.hero::after{content:'';position:absolute;bottom:-50px;left:-50px;width:220px;height:220px;border-radius:50%;border:1px solid rgba(127,179,200,0.1)}
+.hbadge{display:inline-block;background:rgba(200,169,110,0.2);color:#c8a96e;font-size:11px;font-weight:700;letter-spacing:0.15em;padding:3px 12px;border-radius:20px;border:1px solid rgba(200,169,110,0.3);margin-bottom:12px;text-transform:uppercase}
+.hero h1{font-size:clamp(22px,5vw,34px);font-weight:900;margin-bottom:4px}
+.hero h1 span{color:#c8a96e}
+.hero-sub{font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:16px;line-height:1.6}
+.hstats{display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
+.hs-n{font-size:20px;font-weight:700;color:#c8a96e}
+.hs-d{font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px}
+.main{max-width:720px;margin:0 auto;padding:1.25rem 1rem 3rem}
+.tabs{display:flex;background:white;border-radius:10px;border:1px solid rgba(0,0,0,0.1);padding:3px;margin-bottom:1.25rem;gap:2px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab{flex:1;min-width:52px;padding:7px 4px;font-size:12px;font-weight:500;border:none;background:none;cursor:pointer;color:#9a9ab0;border-radius:8px;white-space:nowrap;font-family:inherit;transition:all 0.2s}
+.tab.active{background:#1a1a2e;color:white}
+.tab:hover:not(.active){background:#f8f6f1;color:#5a5a7a}
+.screen{display:none}.screen.active{display:block;animation:fi 0.2s ease}
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.catgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:1rem}
+.catcard{background:white;border:1px solid rgba(0,0,0,0.1);border-radius:10px;padding:.9rem;cursor:pointer;transition:all 0.2s}
+.catcard:hover{border-color:#c8a96e;transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,0.07)}
+.cico{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-bottom:6px}
+.cname{font-size:13px;font-weight:700}.csub{font-size:11px;color:#9a9ab0;margin-top:2px}
+.qhdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px}
+.bb{background:#e8f0fb;color:#2a5298}.br{background:#fdf0ee;color:#c0392b}.bg{background:#e8f5f0;color:#2d7a5f}.ba{background:#fdf5e6;color:#9a6c00}.bgy{background:#f0f0f0;color:#555}.bt{background:#e0f4f8;color:#1a6e80}
+.btnback{font-size:12px;padding:5px 10px;background:none;border:1px solid rgba(0,0,0,0.1);border-radius:8px;cursor:pointer;color:#5a5a7a;font-family:inherit;transition:all 0.15s}
+.btnback:hover{background:#f8f6f1}
+.pbar{height:4px;background:#e8e6e1;border-radius:2px;margin-bottom:1.1rem;overflow:hidden}
+.pfill{height:100%;background:linear-gradient(90deg,#1a1a2e,#7fb3c8);border-radius:2px;transition:width 0.4s ease}
+.prog{font-size:11px;color:#9a9ab0;margin-bottom:4px;text-align:right}
+.qcard{background:white;border:1px solid rgba(0,0,0,0.1);border-radius:10px;padding:1.1rem;margin-bottom:9px}
+.qhint{font-size:11px;color:#9a9ab0;margin-bottom:5px}
+.qtext{font-size:19px;font-weight:700;color:#1a1a2e;margin-bottom:4px;line-height:1.4}
+.qread{font-size:13px;color:#5a5a7a;margin-bottom:3px}
+.quz{font-size:12px;color:#1a6e80;margin-bottom:4px;line-height:1.6}
+.qex{font-size:12px;color:#5a5a7a;border-left:3px solid #c8a96e;padding-left:9px;margin-top:9px;line-height:1.7;border-radius:0}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:9px}
+.ch{background:white;border:1px solid rgba(0,0,0,0.1);border-radius:8px;padding:9px 11px;cursor:pointer;text-align:left;font-family:inherit;transition:all 0.15s}
+.ch:hover:not(:disabled){border-color:#7fb3c8;background:#f0f8fc}
+.ch .cj{font-size:13px;font-weight:500;color:#1a1a2e}.ch .cu{font-size:11px;color:#9a9ab0;margin-top:2px}
+.ch.ok{border-color:#2d7a5f;background:#e8f5f0}.ch.ok .cj{color:#2d7a5f}
+.ch.ng{border-color:#c0392b;background:#fdf0ee}.ch.ng .cj{color:#c0392b}
+.fb{border-radius:8px;padding:9px 12px;font-size:13px;line-height:1.6;margin-bottom:9px;display:none}
+.fb.ok{background:#e8f5f0;color:#2d7a5f;border:1px solid rgba(45,122,95,0.2)}
+.fb.ng{background:#fdf0ee;color:#c0392b;border:1px solid rgba(192,57,43,0.2)}
+.btn{padding:9px 18px;font-size:13px;font-weight:500;border-radius:8px;cursor:pointer;font-family:inherit;border:1px solid rgba(0,0,0,0.1);background:none;color:#1a1a2e;transition:all 0.2s}
+.btn:hover{background:#f8f6f1}
+.btnp{background:#1a1a2e;color:white;border-color:#1a1a2e}
+.btnp:hover{background:#2d2d4e}
+.btnrow{display:flex;gap:8px}
+.mtabs{display:flex;gap:4px;margin-bottom:9px}
+.mtab{padding:4px 10px;font-size:12px;border:1px solid rgba(0,0,0,0.1);border-radius:20px;background:none;cursor:pointer;color:#5a5a7a;font-family:inherit;transition:all 0.15s}
+.mtab.active{background:#1a1a2e;color:white;border-color:#1a1a2e}
+.rcard{background:white;border:1px solid rgba(0,0,0,0.1);border-radius:10px;padding:1.75rem;text-align:center;margin-bottom:1rem}
+.rbig{font-size:46px;font-weight:700;color:#1a1a2e;line-height:1}
+.rmsg{font-size:13px;color:#5a5a7a;margin-top:5px;margin-bottom:1.25rem}
+.srow{display:flex;justify-content:center;gap:24px;margin-bottom:1rem}
+.sn{font-size:20px;font-weight:700}.sd{font-size:11px;color:#9a9ab0;margin-top:2px}
+.narr{background:#f8f6f1;padding:8px 11px;font-size:12px;color:#9a9ab0;margin-bottom:8px;border-left:3px solid #c8a96e;border-radius:0 8px 8px 0}
+.csp{font-size:11px;color:#9a9ab0;margin-bottom:2px;font-weight:700}
+.cbub{background:#f8f6f1;border-radius:0 10px 10px 10px;padding:9px 13px;margin-bottom:5px;font-size:13px;line-height:1.7;max-width:95%;display:flex;align-items:flex-start;gap:6px;flex-wrap:wrap}
+.cuz{font-size:11px;color:#1a6e80;margin-bottom:8px;padding:4px 9px;background:#e0f4f8;border-radius:8px;display:inline-flex;align-items:center;gap:4px;flex-wrap:wrap}
+.qbox{background:#1a1a2e;color:white;border-radius:8px;padding:9px 13px;font-size:13px;font-weight:500;margin-bottom:7px;line-height:1.5}
+.ccho{display:flex;flex-direction:column;gap:5px;margin-bottom:9px}
+.cch{background:white;border:1px solid rgba(0,0,0,0.1);border-radius:8px;padding:9px 12px;cursor:pointer;font-size:13px;color:#1a1a2e;text-align:left;font-family:inherit;transition:all 0.15s}
+.cch:hover:not(:disabled){border-color:#7fb3c8;background:#f0f8fc}
+.cch.ok{border-color:#2d7a5f;background:#e8f5f0;color:#2d7a5f}
+.cch.ng{border-color:#c0392b;background:#fdf0ee;color:#c0392b}
+.cch.rev{border-color:#2d7a5f;color:#2d7a5f}
+.dtitle{font-size:12px;font-weight:700;color:#5a5a7a;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid rgba(0,0,0,0.1)}
+.dtext{font-size:13px;line-height:1.9;color:#1a1a2e;white-space:pre-line}
+.mstat{background:#f8f6f1;border-radius:8px;padding:10px;text-align:center}
+.mstn{font-size:20px;font-weight:700;color:#1a1a2e}.mstd{font-size:11px;color:#9a9ab0;margin-top:2px}
+.spk{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border:1px solid rgba(0,0,0,0.1);border-radius:50%;background:none;cursor:pointer;color:#9a9ab0;font-size:12px;flex-shrink:0;transition:all 0.15s;vertical-align:middle;margin-left:3px}
+.spk:hover{background:#f8f6f1;color:#1a1a2e;border-color:#c8a96e}
+.spk.playing{background:#1a1a2e;color:white;border-color:#1a1a2e}
+.uzspk{font-size:10px;width:auto;padding:0 5px;border-radius:10px}
+.infobox{background:white;border:1px solid rgba(0,0,0,0.1);border-radius:8px;padding:9px 12px;font-size:12px;color:#5a5a7a;line-height:1.6}
+@media(max-width:480px){.catgrid{gap:7px}.choices{grid-template-columns:1fr}.hstats{gap:14px}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hbadge">RC Haus N4</div>
+  <h1>N4 建設<span>日本語</span></h1>
+  <p class="hero-sub">作業員向け基礎日本語<br>Qurilish ishchilari uchun ／ निर्माण मजदुरका लागि</p>
+  <div class="hstats">
+    <div><div class="hs-n">60+</div><div class="hs-d">基礎語彙</div></div>
+    <div><div class="hs-n">5</div><div class="hs-d">文法パターン</div></div>
+    <div><div class="hs-n">4</div><div class="hs-d">会話場面</div></div>
+    <div><div class="hs-n">3</div><div class="hs-d">読解文書</div></div>
+  </div>
+</div>
+
+<div class="main">
+<div class="tabs">
+  <button class="tab active" onclick="sw('vocab')">単語</button>
+  <button class="tab" onclick="sw('grammar')">文法</button>
+  <button class="tab" onclick="sw('conv')">会話</button>
+  <button class="tab" onclick="sw('reading')">読解</button>
+  <button class="tab" onclick="sw('mock')">模擬</button>
+</div>
+
+<!-- VOCAB -->
+<div class="screen active" id="tab-vocab">
+  <div class="screen active" id="v-home">
+    <p style="font-size:12px;color:#9a9ab0;margin-bottom:9px">カテゴリーを選んでください — Kategoriyani tanlang</p>
+    <div class="catgrid">
+      <div class="catcard" onclick="vs('tools')"><div class="cico" style="background:#e8f0fb;color:#2a5298">道</div><div class="cname">道具・資材</div><div class="csub">12語</div></div>
+      <div class="catcard" onclick="vs('actions')"><div class="cico" style="background:#e8f5f0;color:#2d7a5f">動</div><div class="cname">動作・指示</div><div class="csub">12語</div></div>
+      <div class="catcard" onclick="vs('safety4')"><div class="cico" style="background:#fdf0ee;color:#c0392b">安</div><div class="cname">安全の基本</div><div class="csub">12語</div></div>
+      <div class="catcard" onclick="vs('numbers')"><div class="cico" style="background:#fdf5e6;color:#9a6c00">数</div><div class="cname">数字・単位</div><div class="csub">12語</div></div>
+      <div class="catcard" onclick="vs('place')"><div class="cico" style="background:#e0f4f8;color:#1a6e80">場</div><div class="cname">場所・方向</div><div class="csub">12語</div></div>
+      <div class="catcard" onclick="vs('greet')"><div class="cico" style="background:#f0f0f0;color:#555">挨</div><div class="cname">挨拶・返事</div><div class="csub">12語</div></div>
+    </div>
+    <div class="infobox">N4レベル・作業員向け基礎語彙。全語彙オリジナル。みんなの日本語初級I・II準拠。著作権フリー。</div>
+  </div>
+  <div class="screen" id="v-quiz">
+    <div class="qhdr"><span id="v-title" class="badge bb">道具</span><button class="btnback" onclick="vh()">← 戻る</button></div>
+    <div class="mtabs">
+      <button class="mtab active" id="vm-jp" onclick="vm('jp')">日→Uz</button>
+      <button class="mtab" id="vm-uz" onclick="vm('uz')">Uz→日</button>
+      <button class="mtab" id="vm-fill" onclick="vm('fill')">穴埋め</button>
+    </div>
+    <div class="prog" id="v-prog">1/10</div>
+    <div class="pbar"><div class="pfill" id="v-bar" style="width:10%"></div></div>
+    <div class="qcard"><div class="qtext" id="v-q"></div><div class="qread" id="v-read"></div><div class="quz" id="v-hint"></div><div class="qex" id="v-ex"></div></div>
+    <div class="choices" id="v-choices"></div>
+    <div class="fb" id="v-fb"></div>
+    <div style="display:none" id="v-nxt"><button class="btn btnp" onclick="vn()">次へ →</button></div>
+  </div>
+  <div class="screen" id="v-result">
+    <div class="rcard"><div class="rbig" id="v-rs"></div><div class="rmsg" id="v-rm"></div><div class="srow"><div><div class="sn" id="v-rok" style="color:#2d7a5f"></div><div class="sd">正解</div></div><div><div class="sn" id="v-rng" style="color:#c0392b"></div><div class="sd">不正解</div></div><div><div class="sn" id="v-rp"></div><div class="sd">正答率</div></div></div></div>
+    <div class="btnrow"><button class="btn btnp" onclick="vr()">もう一度</button><button class="btn" onclick="vh()">← カテゴリーへ</button></div>
+  </div>
+</div>
+
+<!-- GRAMMAR -->
+<div class="screen" id="tab-grammar">
+  <div class="screen active" id="g-home">
+    <p style="font-size:12px;color:#9a9ab0;margin-bottom:9px">文法パターンを選んでください</p>
+    <div class="catgrid">
+      <div class="catcard" onclick="gs('te')"><div class="cico" style="background:#e8f0fb;color:#2a5298">て</div><div class="cname">て形・指示</div><div class="csub">〜てください</div></div>
+      <div class="catcard" onclick="gs('teiru')"><div class="cico" style="background:#e8f5f0;color:#2d7a5f">い</div><div class="cname">〜ています</div><div class="csub">状態・継続</div></div>
+      <div class="catcard" onclick="gs('particles')"><div class="cico" style="background:#fdf0ee;color:#c0392b">助</div><div class="cname">助詞の基本</div><div class="csub">を・に・で・から</div></div>
+      <div class="catcard" onclick="gs('want')"><div class="cico" style="background:#fdf5e6;color:#9a6c00">た</div><div class="cname">〜たい・〜ないで</div><div class="csub">希望・禁止</div></div>
+      <div class="catcard" onclick="gs('count')"><div class="cico" style="background:#e0f4f8;color:#1a6e80">数</div><div class="cname">数え方・単位</div><div class="csub">〜本・〜枚・〜個</div></div>
+    </div>
+  </div>
+  <div class="screen" id="g-quiz">
+    <div class="qhdr"><span id="g-title" class="badge bgy">て形</span><button class="btnback" onclick="gh()">← 戻る</button></div>
+    <div class="prog" id="g-prog">1/8</div>
+    <div class="pbar"><div class="pfill" id="g-bar" style="width:12%"></div></div>
+    <div class="qcard"><div class="qhint" id="g-hint"></div><div class="qtext" id="g-q" style="font-size:15px"></div><div class="quz" id="g-uz" style="margin-top:5px"></div></div>
+    <div class="choices" id="g-choices"></div>
+    <div class="fb" id="g-fb"></div>
+    <div style="display:none" id="g-nxt"><button class="btn btnp" onclick="gn()">次へ →</button></div>
+  </div>
+  <div class="screen" id="g-result">
+    <div class="rcard"><div class="rbig" id="g-rs"></div><div class="rmsg" id="g-rm"></div><div class="srow"><div><div class="sn" id="g-rok" style="color:#2d7a5f"></div><div class="sd">正解</div></div><div><div class="sn" id="g-rng" style="color:#c0392b"></div><div class="sd">不正解</div></div><div><div class="sn" id="g-rp"></div><div class="sd">正答率</div></div></div></div>
+    <div class="btnrow"><button class="btn btnp" onclick="gr()">もう一度</button><button class="btn" onclick="gh()">← 文法選択へ</button></div>
+  </div>
+</div>
+
+<!-- CONV -->
+<div class="screen" id="tab-conv">
+  <div class="screen active" id="c-home">
+    <p style="font-size:12px;color:#9a9ab0;margin-bottom:9px">場面を選んでください — Stsenariyani tanlang</p>
+    <div style="display:flex;flex-direction:column;gap:7px">
+      <div class="catcard" onclick="cs(0)" style="display:flex;align-items:center;gap:10px"><div class="cico" style="background:#e8f0fb;color:#2a5298;flex-shrink:0">朝</div><div><div class="cname">朝の挨拶・出勤</div><div class="csub">現場に入るときの基本会話</div></div></div>
+      <div class="catcard" onclick="cs(1)" style="display:flex;align-items:center;gap:10px"><div class="cico" style="background:#e8f5f0;color:#2d7a5f;flex-shrink:0">道</div><div><div class="cname">道具を受け取る・渡す</div><div class="csub">「これを持ってください」</div></div></div>
+      <div class="catcard" onclick="cs(2)" style="display:flex;align-items:center;gap:10px"><div class="cico" style="background:#fdf0ee;color:#c0392b;flex-shrink:0">指</div><div><div class="cname">指示を聞く・確認する</div><div class="csub">「わかりました」「どこですか？」</div></div></div>
+      <div class="catcard" onclick="cs(3)" style="display:flex;align-items:center;gap:10px"><div class="cico" style="background:#fdf5e6;color:#9a6c00;flex-shrink:0">体</div><div><div class="cname">体調・困ったとき</div><div class="csub">「痛いです」「わかりません」</div></div></div>
+    </div>
+  </div>
+  <div class="screen" id="c-scene">
+    <div class="qhdr"><span id="c-title" class="badge bb">朝礼</span><button class="btnback" onclick="ch()">← 戻る</button></div>
+    <div class="pbar"><div class="pfill" id="c-bar" style="width:0%"></div></div>
+    <div id="c-dialog" style="display:flex;flex-direction:column"></div>
+    <div id="c-cw"></div>
+    <div class="fb" id="c-fb"></div>
+    <div style="display:none;margin-top:7px" id="c-nxt"><button class="btn btnp" onclick="cn()">続きへ →</button></div>
+  </div>
+  <div class="screen" id="c-result">
+    <div class="rcard"><div class="rbig" id="c-rs"></div><div class="rmsg" id="c-rm"></div><div class="srow"><div><div class="sn" id="c-rok" style="color:#2d7a5f"></div><div class="sd">正解</div></div><div><div class="sn" id="c-rng" style="color:#c0392b"></div><div class="sd">不正解</div></div><div><div class="sn" id="c-rp"></div><div class="sd">正答率</div></div></div></div>
+    <div class="btnrow"><button class="btn btnp" onclick="cr()">もう一度</button><button class="btn" onclick="ch()">← 場面へ</button></div>
+  </div>
+</div>
+
+<!-- READING -->
+<div class="screen" id="tab-reading">
+  <div class="screen active" id="r-home">
+    <p style="font-size:12px;color:#9a9ab0;margin-bottom:9px">文章を選んでください（N4読解）</p>
+    <div style="display:flex;flex-direction:column;gap:7px">
+      <div class="catcard" onclick="rs(0)" style="display:flex;align-items:center;gap:10px"><div class="cico" style="background:#e8f0fb;color:#2a5298;flex-shrink:0">掲</div><div><div class="cname">安全掲示板</div><div class="csub">現場の簡単な掲示を読む</div></div></div>
+      <div class="catcard" onclick="rs(1)" style="display:flex;align-items:center;gap:10px"><div class="cico" style="background:#e8f5f0;color:#2d7a5f;flex-shrink:0">予</div><div><div class="cname">作業予定表</div><div class="csub">今日のスケジュールを読む</div></div></div>
+      <div class="catcard" onclick="rs(2)" style="display:flex;align-items:center;gap:10px"><div class="cico" style="background:#fdf0ee;color:#c0392b;flex-shrink:0">注</div><div><div class="cname">注意書き</div><div class="csub">道具・機械の注意書きを読む</div></div></div>
+    </div>
+  </div>
+  <div class="screen" id="r-quiz">
+    <div class="qhdr"><span id="r-title" class="badge bb">掲示板</span><button class="btnback" onclick="rh()">← 戻る</button></div>
+    <div class="pbar"><div class="pfill" id="r-bar" style="width:0%"></div></div>
+    <div class="qcard" style="margin-bottom:9px"><div class="dtitle" id="r-dtitle"></div><div class="dtext" id="r-text"></div></div>
+    <div id="r-qs"></div>
+    <div style="display:none" id="r-nxt"><button class="btn btnp" onclick="rn()">次の問題 →</button></div>
+    <div style="display:none" id="r-done"><button class="btn btnp" onclick="rres()">結果を見る</button></div>
+  </div>
+  <div class="screen" id="r-result">
+    <div class="rcard"><div class="rbig" id="r-rs"></div><div class="rmsg" id="r-rm"></div><div class="srow"><div><div class="sn" id="r-rok" style="color:#2d7a5f"></div><div class="sd">正解</div></div><div><div class="sn" id="r-rng" style="color:#c0392b"></div><div class="sd">不正解</div></div><div><div class="sn" id="r-rp"></div><div class="sd">正答率</div></div></div></div>
+    <div class="btnrow"><button class="btn btnp" onclick="rr()">もう一度</button><button class="btn" onclick="rh()">← 読解選択へ</button></div>
+  </div>
+</div>
+
+<!-- MOCK -->
+<div class="screen" id="tab-mock">
+  <div class="screen active" id="m-home">
+    <div class="qcard" style="margin-bottom:1rem">
+      <div style="font-size:15px;font-weight:700;margin-bottom:7px">N4 建設業 総合テスト</div>
+      <div style="font-size:13px;color:#5a5a7a;line-height:1.7;margin-bottom:12px">語彙・文法・読解からランダム出題。全18問。毎回問題が変わります。<br><span style="color:#1a6e80">Umumiy test — 18 savol. / कुल परीक्षण — १८ प्रश्न।</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:12px">
+        <div class="mstat"><div class="mstn">8問</div><div class="mstd">語彙</div></div>
+        <div class="mstat"><div class="mstn">6問</div><div class="mstd">文法</div></div>
+        <div class="mstat"><div class="mstn">4問</div><div class="mstd">読解</div></div>
+      </div>
+      <button class="btn btnp" onclick="ms()" style="width:100%;padding:11px">テスト開始 — Testni boshlash / परीक्षा सुरु गर्नुस्</button>
+    </div>
+  </div>
+  <div class="screen" id="m-quiz">
+    <div class="qhdr"><span id="m-qt" class="badge bgy">語彙</span><span id="m-prog" style="font-size:12px;color:#9a9ab0">1/18</span></div>
+    <div class="pbar"><div class="pfill" id="m-bar" style="width:5%"></div></div>
+    <div class="qcard"><div class="qhint" id="m-hint"></div><div class="qtext" id="m-q" style="font-size:15px"></div><div class="quz" id="m-uz" style="margin-top:4px"></div><div class="qex" id="m-ex"></div></div>
+    <div class="choices" id="m-choices"></div>
+    <div class="fb" id="m-fb"></div>
+    <div style="display:none" id="m-nxt"><button class="btn btnp" onclick="mn()">次へ →</button></div>
+  </div>
+  <div class="screen" id="m-result">
+    <div class="rcard">
+      <div style="font-size:12px;color:#9a9ab0;margin-bottom:7px">N4 建設業 総合テスト結果</div>
+      <div class="rbig" id="m-rs"></div><div class="rmsg" id="m-rm"></div>
+      <div class="srow"><div><div class="sn" id="m-rok" style="color:#2d7a5f"></div><div class="sd">正解</div></div><div><div class="sn" id="m-rng" style="color:#c0392b"></div><div class="sd">不正解</div></div><div><div class="sn" id="m-rp"></div><div class="sd">正答率</div></div></div>
+      <div id="m-bd" style="font-size:12px;color:#5a5a7a;margin-top:7px;line-height:1.8"></div>
+    </div>
+    <div class="btnrow"><button class="btn btnp" onclick="ms()">もう一度</button><button class="btn" onclick="mh()">← ホームへ</button></div>
+  </div>
+</div>
+</div>
+
+<script>
+const NP={'ヘルメット':'हेल्मेट','安全靴':'सुरक्षा जुत्ता','手袋':'पञ्जा','メジャー':'मापन फिता','鉄筋':'फलाम रड','型枠':'साँचो','スコップ':'खनेती','バケツ':'बाल्टी','ハンマー':'हथौडा','バール':'छड','コテ':'तह लगाउने औजार','ほうき':'झाडू','運ぶ':'बोक्नु','置く':'राख्नु','持つ':'समात्नु','待つ':'पर्खनु','切る':'काट्नु','測る':'नाप्नु','混ぜる':'मिसाउनु','片付ける':'सफा गर्नु','始める':'सुरु गर्नु','止める':'रोक्नु','確認する':'जाँच गर्नु','呼ぶ':'बोलाउनु','立入禁止':'प्रवेश निषेध','危険':'खतरा','注意':'सावधानी','禁止':'निषेध','ヘルメット着用':'हेल्मेट लगाउनु','安全帯':'सुरक्षा पेटी','火気厳禁':'आगो निषेध','緊急':'आपतकाल','出口':'बाहिर निस्कने ढोका','入口':'प्रवेश द्वार','非常口':'आपतकालीन निकास','消火器':'आगो निभाउने यन्त्र','1本':'१ वटा','2枚':'२ वटा','3個':'३ वटा','10センチ':'१० सेन्टिमिटर','ミリ':'मिलिमिटर','メートル':'मिटर','キロ':'किलोग्राम','時間':'घण्टा','半分':'आधा','全部':'सबै','少し':'अलिकति','たくさん':'धेरै','上':'माथि','下':'तल','右':'दायाँ','左':'बायाँ','前':'अगाडि','後ろ':'पछाडि','中':'भित्र','外':'बाहिर','隣':'छेउमा','向こう':'त्यता','ここ':'यहाँ','あそこ':'त्यहाँ','おはようございます':'शुभ प्रभात','よろしくお願いします':'कृपया सहयोग गर्नुहोस्','ありがとうございます':'धन्यवाद','すみません':'माफ गर्नुस्','わかりました':'बुझें','わかりません':'बुझिनँ','はい':'हो','いいえ':'होइन','お疲れ様です':'धन्यवाद, थकित हुनुभयो','ご安全に':'सुरक्षित रहनुस्','少々お待ちください':'अलि कुर्नुस्','お先に失礼します':'म अगि जान्छु'};
+const VD={tools:[{jp:'ヘルメット',read:'へるめっと',uz:'Shlem',ex:'ヘルメットをかぶってください。'},{jp:'安全靴',read:'あんぜんぐつ',uz:'Maxsus poyabzal',ex:'安全靴を履いてください。'},{jp:'手袋',read:'てぶくろ',uz:"Qo'lqop",ex:'手袋をつけてください。'},{jp:'メジャー',read:'めじゃー',uz:"O'lchagich",ex:'メジャーで測ってください。'},{jp:'鉄筋',read:'てっきん',uz:'Armatura',ex:'鉄筋を運んでください。'},{jp:'型枠',read:'かたわく',uz:'Qolip',ex:'型枠を組んでください。'},{jp:'スコップ',read:'すこっぷ',uz:'Belkurak',ex:'スコップで掘ってください。'},{jp:'バケツ',read:'ばけつ',uz:'Chelak',ex:'バケツに水を入れてください。'},{jp:'ハンマー',read:'はんまー',uz:"Bolg'a",ex:'ハンマーで叩いてください。'},{jp:'バール',read:'ばーる',uz:'Katta mix',ex:'バールで外してください。'},{jp:'コテ',read:'こて',uz:'Gips qoshiq',ex:'コテで塗ってください。'},{jp:'ほうき',read:'ほうき',uz:'Supurgi',ex:'ほうきで掃いてください。'}],actions:[{jp:'運ぶ',read:'はこぶ',uz:'Tashimoq',ex:'資材を運んでください。'},{jp:'置く',read:'おく',uz:"Qo'ymoq",ex:'ここに置いてください。'},{jp:'持つ',read:'もつ',uz:'Ushlamoq',ex:'これを持ってください。'},{jp:'待つ',read:'まつ',uz:'Kutmoq',ex:'ちょっと待ってください。'},{jp:'切る',read:'きる',uz:'Kesmoq',ex:'この長さに切ってください。'},{jp:'測る',read:'はかる',uz:"O'lchamoq",ex:'寸法を測ってください。'},{jp:'混ぜる',read:'まぜる',uz:'Aralashtimoq',ex:'コンクリートを混ぜてください。'},{jp:'片付ける',read:'かたづける',uz:"Yig'ishtimoq",ex:'道具を片付けてください。'},{jp:'始める',read:'はじめる',uz:'Boshlamoq',ex:'作業を始めてください。'},{jp:'止める',read:'とめる',uz:"To'xtatmoq",ex:'機械を止めてください。'},{jp:'確認する',read:'かくにんする',uz:'Tekshirmoq',ex:'安全を確認してください。'},{jp:'呼ぶ',read:'よぶ',uz:'Chaqirmoq',ex:'監督を呼んでください。'}],safety4:[{jp:'立入禁止',read:'たちいりきんし',uz:'Kirish taqiqlangan',ex:'ここは立入禁止です。'},{jp:'危険',read:'きけん',uz:'Xavfli',ex:'危険！入らないでください。'},{jp:'注意',read:'ちゅうい',uz:'Ehtiyot',ex:'足元に注意してください。'},{jp:'禁止',read:'きんし',uz:'Taqiqlangan',ex:'ここでの飲食は禁止です。'},{jp:'ヘルメット着用',read:'へるめっとちゃくよう',uz:'Shlem kiyish shart',ex:'必ずヘルメットを着用してください。'},{jp:'安全帯',read:'あんぜんたい',uz:'Xavfsizlik kamari',ex:'高い所では安全帯をつけてください。'},{jp:'火気厳禁',read:'かきげんきん',uz:'Olov taqiqlangan',ex:'この場所は火気厳禁です。'},{jp:'緊急',read:'きんきゅう',uz:'Favqulodda',ex:'緊急のときは大声で呼んでください。'},{jp:'出口',read:'でぐち',uz:'Chiqish',ex:'出口はあちらです。'},{jp:'入口',read:'いりぐち',uz:'Kirish',ex:'入口はこちらです。'},{jp:'非常口',read:'ひじょうぐち',uz:'Favqulodda chiqish',ex:'非常口の場所を確認してください。'},{jp:'消火器',read:'しょうかき',uz:"O't o'chiruvchi",ex:'消火器の場所を覚えてください。'}],numbers:[{jp:'1本',read:'いっぽん',uz:'1 ta (uzun narsa)',ex:'鉄筋を1本持ってきてください。'},{jp:'2枚',read:'にまい',uz:'2 ta (yassi narsa)',ex:'板を2枚置いてください。'},{jp:'3個',read:'さんこ',uz:'3 ta',ex:'ボルトを3個締めてください。'},{jp:'10センチ',read:'じゅっせんち',uz:'10 sm',ex:'10センチ空けてください。'},{jp:'ミリ',read:'みり',uz:'millimetr',ex:'5ミリずらしてください。'},{jp:'メートル',read:'めーとる',uz:'metr',ex:'2メートル離れてください。'},{jp:'キロ',read:'きろ',uz:'kilogramm',ex:'この袋は25キロです。'},{jp:'時間',read:'じかん',uz:'soat (vaqt)',ex:'作業時間は8時間です。'},{jp:'半分',read:'はんぶん',uz:'yarmi',ex:'半分に切ってください。'},{jp:'全部',read:'ぜんぶ',uz:'hammasi',ex:'全部運んでください。'},{jp:'少し',read:'すこし',uz:'ozgina',ex:'少し待ってください。'},{jp:'たくさん',read:'たくさん',uz:"ko'p",ex:'水をたくさん使ってください。'}],place:[{jp:'上',read:'うえ',uz:'yuqori',ex:'上に置いてください。'},{jp:'下',read:'した',uz:'pastda',ex:'下に降りてください。'},{jp:'右',read:'みぎ',uz:"o'ng",ex:'右に動いてください。'},{jp:'左',read:'ひだり',uz:'chap',ex:'左に曲がってください。'},{jp:'前',read:'まえ',uz:'oldinda',ex:'前に進んでください。'},{jp:'後ろ',read:'うしろ',uz:'orqada',ex:'後ろに下がってください。'},{jp:'中',read:'なか',uz:'ichida',ex:'建物の中に入ってください。'},{jp:'外',read:'そと',uz:'tashqarida',ex:'外に出てください。'},{jp:'隣',read:'となり',uz:'yonida',ex:'隣に置いてください。'},{jp:'向こう',read:'むこう',uz:'narigi tomonda',ex:'向こうに運んでください。'},{jp:'ここ',read:'ここ',uz:'bu yerda',ex:'ここに置いてください。'},{jp:'あそこ',read:'あそこ',uz:'ana u yerda',ex:'あそこに集まってください。'}],greet:[{jp:'おはようございます',read:'おはようございます',uz:'Xayrli tong',ex:'朝、現場で「おはようございます」と言います。'},{jp:'よろしくお願いします',read:'よろしくおねがいします',uz:'Iltimos, yordam bering',ex:'仕事を始めるとき「よろしくお願いします」と言います。'},{jp:'ありがとうございます',read:'ありがとうございます',uz:'Rahmat',ex:'「ありがとうございます」は感謝の言葉です。'},{jp:'すみません',read:'すみません',uz:"Uzur so'rayman",ex:'「すみません」は呼びかけや謝罪に使います。'},{jp:'わかりました',read:'わかりました',uz:'Tushundim',ex:'指示を聞いたら「わかりました」と答えます。'},{jp:'わかりません',read:'わかりません',uz:'Tushunmadim',ex:'わからないときは「わかりません」と言います。'},{jp:'はい',read:'はい',uz:'Ha',ex:'「はい」は返事の基本です。'},{jp:'いいえ',read:'いいえ',uz:"Yo'q",ex:'「いいえ」は否定の返事です。'},{jp:'お疲れ様です',read:'おつかれさまです',uz:'Rahmat, charchagansiz',ex:'仕事中・仕事後に「お疲れ様です」と言います。'},{jp:'ご安全に',read:'ごあんぜんに',uz:"Xavfsiz bo'ling",ex:'現場では「ご安全に！」と挨拶します。'},{jp:'少々お待ちください',read:'しょうしょうおまちください',uz:'Biroz kuting',ex:'「少々お待ちください」は丁寧な待ってくださいです。'},{jp:'お先に失礼します',read:'おさきにしつれいします',uz:'Men avval ketaman',ex:'先に帰るとき「お先に失礼します」と言います。'}]};
+const GD={te:[{hint:'て形＋ください（指示）',q:'鉄筋を___（運ぶ→て形）。',uz:'Armaturani tashib keling.',ans:'運んでください',choices:['運んでください','運びてください','運ぶてください','運んでいます'],ex:'「運ぶ→運んで」五段動詞のて形。「〜てください」は指示・依頼の基本。'},{hint:'て形（五段動詞）',q:'ここに型枠を___（置く→て形）。',uz:"Bu yerga qolipni qo'ying.",ans:'置いてください',choices:['置いてください','置きてください','置くてください','置いています'],ex:'「置く→置いて」五段動詞のて形。語幹＋いて。'},{hint:'て形（一段動詞）',q:'安全を___（確認する→て形）。',uz:'Xavfsizlikni tekshiring.',ans:'確認してください',choices:['確認してください','確認しくください','確認するください','確認しています'],ex:'「確認する→確認して」サ変動詞のて形。'},{hint:'〜ないでください（禁止）',q:'ここに入ら___（禁止）。',uz:'Bu yerga kirmang.',ans:'ないでください',choices:['ないでください','なくてください','ないください','なかったください'],ex:'「〜ないでください」禁止の表現。「入る→入らないでください」。'},{hint:'て形の連続（順序）',q:'道具を___、作業を始めてください。（持つ→て形）',uz:"Asbobni olib, ishni boshlang.",ans:'持って',choices:['持って','持ちて','持つて','持ています'],ex:'「持って」+ 別の動作。て形で動作をつなぐ。'},{hint:'〜てから（順序）',q:'ヘルメットをかぶっ___、現場に入ってください。',uz:'Shlem kiyib, keyin ish joyiga kiring.',ans:'てから',choices:['てから','てあとで','ていてから','てください'],ex:'「〜てから」= 〜した後で。順番を強調する表現。'},{hint:'〜てあげる（してあげる）',q:'新人に道具の使い方を教え___。',uz:"Yangi ishchiga asbob ishlatishni o'rgatib berdim.",ans:'てあげました',choices:['てあげました','てくれました','てもらいました','てしまいました'],ex:'「〜てあげる」自分が相手に何かをしてあげる。'},{hint:'〜てもいいですか（許可）',q:'少し休憩し___（許可を聞く）。',uz:"Biroz dam olsam bo'ladimi?",ans:'てもいいですか',choices:['てもいいですか','てください','てはいけません','てしまいます'],ex:'「〜てもいいですか」許可を求める表現。監督に聞くときに使う。'}],teiru:[{hint:'〜ています（今している動作）',q:'今、鉄筋を___（運ぶ→〜ています）。',uz:'Hozir armatura tashiyapman.',ans:'運んでいます',choices:['運んでいます','運んでした','運んでいました','運びます'],ex:'「〜ています」今まさにしている動作。進行形。'},{hint:'〜ています（状態）',q:'ヘルメットを___（かぶる→〜ています）。',uz:'Shlem kiyib turibman.',ans:'かぶっています',choices:['かぶっています','かぶっていました','かぶります','かぶっていません'],ex:'「かぶっています」今の状態を表す。'},{hint:'〜ていません（否定）',q:'まだ作業を___（始める→〜ていません）。',uz:'Hali ishni boshlamadim.',ans:'始めていません',choices:['始めていません','始めません','始めていました','始めました'],ex:'「〜ていません」まだしていないという否定の状態。'},{hint:'〜ていました（過去の状態）',q:'さっきまで資材を___（運ぶ→〜ていました）。',uz:'Biroz oldin material tashib edim.',ans:'運んでいました',choices:['運んでいました','運んでいます','運んでした','運びました'],ex:'「〜ていました」過去のある時点での状態・動作。'},{hint:'〜ています（結果の状態）',q:'型枠が___（壊れる→〜ています）。',uz:'Qolip sinib ketgan.',ans:'壊れています',choices:['壊れています','壊れていました','壊します','壊れました'],ex:'「壊れています」すでに壊れた結果の状態。'},{hint:'〜ています（習慣）',q:'毎朝8時に___（朝礼をする→〜ています）。',uz:"Har kuni ertalab soat 8 da yig'ilish o'tkaziladi.",ans:'朝礼をしています',choices:['朝礼をしています','朝礼をしました','朝礼をします','朝礼をしていました'],ex:'「〜ています」習慣・繰り返しの動作。'},{hint:'〜てある（意図的な状態）',q:'道具が___（準備する→〜てあります）。',uz:"Asboblar tayyorlab qo'yilgan.",ans:'準備してあります',choices:['準備してあります','準備しています','準備しました','準備できています'],ex:'「〜てある」誰かが意図的にした結果の状態。'},{hint:'〜ておく（準備）',q:'明日のために道具を___（片付ける→〜ておきます）。',uz:"Ertaga uchun asboblarni yig'ishtirib qo'yaman.",ans:'片付けておきます',choices:['片付けておきます','片付けてあります','片付けています','片付けました'],ex:'「〜ておく」将来のために準備する。'}],particles:[{hint:'を（動作の対象）',q:'鉄筋___運んでください。',uz:'Armaturani tashib keling.',ans:'を',choices:['を','が','に','で'],ex:'「を」動作の対象を示す助詞。「〜を運ぶ」「〜を持つ」。'},{hint:'に（場所・方向・時間）',q:'3階___行ってください。',uz:'3-qavatga boring.',ans:'に',choices:['に','を','で','が'],ex:'「に」行く先・場所・時間を示す。「〜に行く」「〜に置く」。'},{hint:'で（手段・場所）',q:'メジャー___測ってください。',uz:"O'lchagich bilan o'lchang.",ans:'で',choices:['で','を','に','が'],ex:'「で」手段・方法を示す。「メジャーで測る」「現場で働く」。'},{hint:'から（起点）',q:'8時___作業を始めます。',uz:'Soat 8 dan boshlab ish boshlanadi.',ans:'から',choices:['から','まで','に','で'],ex:'「から」起点・始まりを示す。「8時から」「ここから」。'},{hint:'まで（終点）',q:'5時___作業です。',uz:'Soat 5 gacha ish.',ans:'まで',choices:['まで','から','に','で'],ex:'「まで」終点・限界を示す。「5時まで」「ここまで」。'},{hint:'が（主語・存在）',q:'危険___あります。',uz:'Xavf bor.',ans:'が',choices:['が','は','を','に'],ex:'「が」主語・存在を示す。「危険がある」「問題がある」。'},{hint:'は（主題）',q:'私___新しい作業員です。',uz:'Men yangi ishchiman.',ans:'は',choices:['は','が','を','に'],ex:'「は」主題を示す。「私は〜です」の基本文型。'},{hint:'と（一緒に）',q:'チームの人___作業します。',uz:"Jamoa a'zolari bilan ishlayapman.",ans:'と',choices:['と','に','で','を'],ex:'「と」一緒に・〜と言う。「〜と一緒に作業する」。'}],want:[{hint:'〜たい（したいこと）',q:'水を___（飲む→〜たいです）。',uz:'Suv ichmoqchiman.',ans:'飲みたいです',choices:['飲みたいです','飲みたいません','飲むたいです','飲んだいです'],ex:'「〜たい」自分の希望。動詞ます形語幹＋たい。'},{hint:'〜たくない（したくないこと）',q:'残業は___（する→〜たくないです）。',uz:"Qo'shimcha ishlamoqchi emasman.",ans:'したくないです',choices:['したくないです','したくありません','しないたいです','したいです'],ex:'「〜たくない」希望の否定。「したくないです」= 丁寧な言い方。'},{hint:'〜てはいけません（禁止）',q:'ここでタバコを吸っ___（禁止）。',uz:'Bu yerda chekish mumkin emas.',ans:'てはいけません',choices:['てはいけません','てもいいです','てください','てはいいです'],ex:'「〜てはいけません」禁止の表現。'},{hint:'〜なければなりません（義務）',q:'ヘルメットをかぶら___（義務）。',uz:'Shlem kiyish shart.',ans:'なければなりません',choices:['なければなりません','ないでください','なくていいです','なくてもいいです'],ex:'「〜なければなりません」義務・しなければならない。'},{hint:'〜なくてもいいです（不必要）',q:'今日は残業し___（不必要）。',uz:"Bugun qo'shimcha ishlash shart emas.",ans:'なくてもいいです',choices:['なくてもいいです','なければなりません','てはいけません','てもいいです'],ex:'「〜なくてもいいです」しなくてよい。必要ないという表現。'},{hint:'〜てもいいですか（許可）',q:'トイレに行っ___（許可を聞く）。',uz:"Hojatxonaga borsam bo'ladimi?",ans:'てもいいですか',choices:['てもいいですか','てはいけませんか','てください','てから'],ex:'「〜てもいいですか」許可を求める。監督・上司に使う。'},{hint:'〜ほしい（もらいたい）',q:'水が___（ほしい・丁寧）。',uz:'Suv kerak.',ans:'ほしいです',choices:['ほしいです','たいです','くれます','もらいます'],ex:'「〜がほしい」物が欲しいときの表現。「〜たい」は動作。'},{hint:'〜ましょう（一緒に）',q:'一緒に作業し___（誘う）。',uz:'Birga ishlaylik.',ans:'ましょう',choices:['ましょう','ます','ませんか','てください'],ex:'「〜ましょう」一緒にしましょうという誘い・提案。'}],count:[{hint:'〜本（細長いもの）',q:'鉄筋を3___ください。（細長いもの）',uz:'3 ta armatura bering.',ans:'本',choices:['本','枚','個','台'],ex:'「本（ほん・ぽん・ぼん）」棒・管・細長いものを数える。'},{hint:'〜枚（薄いもの）',q:'板を5___ください。（薄いもの）',uz:'5 ta taxta bering.',ans:'枚',choices:['枚','本','個','冊'],ex:'「枚（まい）」紙・板・薄いものを数える。'},{hint:'〜個（小さいもの）',q:'ボルトを10___ください。（小さいもの）',uz:'10 ta bolt bering.',ans:'個',choices:['個','本','枚','台'],ex:'「個（こ）」小さな物・ボルト・石などを数える。'},{hint:'〜台（機械）',q:'クレーンが2___あります。（機械）',uz:'2 ta kran bor.',ans:'台',choices:['台','個','本','枚'],ex:'「台（だい）」車・機械・大型機器を数える。'},{hint:'〜人（人）',q:'作業員が5___います。（人）',uz:'5 ta ishchi bor.',ans:'人',choices:['人','名','台','本'],ex:'「人（にん・り）」人を数える。1人（ひとり）2人（ふたり）は例外。'},{hint:'〜か所（場所）',q:'危険な場所が3___あります。（場所）',uz:'3 ta xavfli joy bor.',ans:'か所',choices:['か所','枚','本','台'],ex:'「か所（かしょ）」場所・箇所を数える。'},{hint:'〜時間（時間）',q:'作業は8___です。（時間）',uz:'Ish 8 soat.',ans:'時間',choices:['時間','分','本','個'],ex:'「時間（じかん）」時間の長さを数える。「8時間」「2時間」。'},{hint:'〜分（分）',q:'休憩は15___です。（時間・分）',uz:'Tanaffus 15 daqiqa.',ans:'分',choices:['分','時間','秒','本'],ex:'「分（ふん・ぷん）」分を数える。「15分」「30分」。'}]};
+const SCENARIOS=[{title:'朝の挨拶・出勤',badge:'bb',steps:[{type:'narrate',text:'【場面】朝8時。現場の入口で監督の田中さんに会いました。'},{type:'line',speaker:'田中監督',jp:'おはようございます！今日もよろしくお願いします。',uz:"Xayrli tong! Bugun ham yaxshi ishlaymiz.",np:'शुभ प्रभात! आज पनि राम्रो काम गरौं।'},{type:'question',q:'「おはようございます」はいつ使いますか？',choices:['朝の挨拶','夜の挨拶','食事の前','仕事の後'],ans:0,explain:'「おはようございます」は朝の挨拶です。現場では毎朝使います。'},{type:'line',speaker:'田中監督',jp:'今日は3階で作業です。ヘルメットと安全帯をつけてください。',uz:"Bugun 3-qavatda ish. Shlem va xavfsizlik kamarini taqib keling.",np:'आज तेस्रो तलामा काम छ। हेल्मेट र सुरक्षा पेटी लगाउनुस्।'},{type:'question',q:'「つけてください」はどんな表現ですか？',choices:['て形＋ください（指示）','〜ています（状態）','〜たい（希望）','〜ましょう（提案）'],ans:0,explain:'「て形＋ください」は丁寧な指示・依頼の表現。'},{type:'line',speaker:'あなた',jp:'はい、わかりました。ヘルメットはもうかぶっています。',uz:'Ha, tushundim. Shlemni allaqachon kiyib oldim.',np:'हो, बुझें। हेल्मेट लगाइसकेको छु।'},{type:'question',q:'「わかりました」の意味は？',choices:['理解した・了解した','わからない','ありがとう','すみません'],ans:0,explain:'「わかりました」= 指示を理解したという返事。現場では必ず使う基本表現。'}]},{title:'道具を受け取る・渡す',badge:'bg',steps:[{type:'narrate',text:'【場面】先輩の鈴木さんから道具をもらいます。'},{type:'line',speaker:'鈴木さん',jp:'これ、メジャーです。使ってください。',uz:"Bu o'lchagich. Ishlating.",np:'यो मापन फिता हो। प्रयोग गर्नुस्।'},{type:'question',q:'「これ」は何を指しますか？',choices:['近くにあるもの','遠くにあるもの','どこか分からないもの','人'],ans:0,explain:'「これ」= 自分の近くにあるもの。「それ」= 相手の近くにあるもの。「あれ」= 遠くにあるもの。'},{type:'line',speaker:'あなた',jp:'ありがとうございます。使ってもいいですか？',uz:"Rahmat. Ishlatsa bo'ladimi?",np:'धन्यवाद। प्रयोग गर्न हुन्छ?'},{type:'question',q:'「〜てもいいですか」は何を求めていますか？',choices:['許可','禁止','指示','謝罪'],ans:0,explain:'「〜てもいいですか」= 許可を求める表現。監督や先輩に使う。'},{type:'line',speaker:'鈴木さん',jp:'もちろんです。使い終わったら、元の場所に置いてください。',uz:"Albatta. Ishlatib bo'lgach, joyiga qo'yib qo'ying.",np:'अवश्य। प्रयोग सकेपछि त्यही ठाउँमा राख्नुस्।'},{type:'question',q:'「元の場所」の意味は？',choices:['もとあった場所','新しい場所','どこでもいい場所','外の場所'],ans:0,explain:'「元（もと）の場所」= もともとあった場所。道具は使い終わったら戻す。'}]},{title:'指示を聞く・確認する',badge:'br',steps:[{type:'narrate',text:'【場面】監督から作業の指示を受けています。'},{type:'line',speaker:'田中監督',jp:'この鉄筋を2階に運んでください。',uz:'Bu armaturani 2-qavatga tashib keling.',np:'यो फलाम रड दोस्रो तलामा लैजानुस्।'},{type:'question',q:'「2階に」の「に」は何を示していますか？',choices:['場所・方向','手段','起点','時間'],ans:0,explain:'「に」は場所や方向を示す。「2階に運ぶ」「あそこに置く」などに使う。'},{type:'line',speaker:'あなた',jp:'すみません、2階はどこですか？',uz:'Uzur, 2-qavat qayerda?',np:'माफ गर्नुस्, दोस्रो तला कहाँ छ?'},{type:'question',q:'「すみません」はここでどんな意味ですか？',choices:['呼びかけ・質問の前置き','謝罪','ありがとう','さようなら'],ans:0,explain:'「すみません」は謝罪だけでなく、人に声をかけるときにも使う。Excuse me と同じ。'},{type:'line',speaker:'田中監督',jp:'あそこの階段を上がって、右に行くと見えます。',uz:"Ana o'sha zinapoyadan chiqib, o'ngga bursangiz ko'rinadi.",np:'त्यहाँको सिँढीबाट माथि गएर, दायाँ मोड्दा देखिन्छ।'},{type:'question',q:'「右」はどちらですか？',choices:['みぎ（右手の方向）','ひだり（左手の方向）','まえ（前）','うしろ（後ろ）'],ans:0,explain:'「右（みぎ）」= right。「左（ひだり）」= left。方向の基本語彙。'}]},{title:'体調・困ったとき',badge:'ba',steps:[{type:'narrate',text:'【場面】作業中、少し体の具合が悪くなりました。'},{type:'line',speaker:'あなた',jp:'すみません、田中監督。少し体の調子が悪いです。',uz:"Uzur, Tanaka nazoratchi. Biroz kasal bo'lib qoldim.",np:'माफ गर्नुस्, तानाका अनुगामक। अलि अस्वस्थ महसुस भइरहेको छ।'},{type:'question',q:'体調が悪いとき、まず何をすべきですか？',choices:['監督に報告する','無理して作業を続ける','こっそり休む','自分で判断する'],ans:0,explain:'体調が悪いときは必ず監督に報告する。現場での安全のため重要。'},{type:'line',speaker:'田中監督',jp:'大丈夫ですか？どこが痛いですか？',uz:"Yaxshimisiz? Qayeringiz og'riyapti?",np:'ठीक हुनुहुन्छ? कहाँ दुखिरहेको छ?'},{type:'question',q:'「どこ」は何を聞いていますか？',choices:['場所（体のどの部分）','時間','理由','方法'],ans:0,explain:'「どこ」= 場所を聞く疑問詞。「いつ」= 時間、「なぜ」= 理由、「どうやって」= 方法。'},{type:'line',speaker:'あなた',jp:'頭が痛いです。少し休んでもいいですか？',uz:"Boshim og'riyapti. Biroz dam olsam bo'ladimi?",np:'टाउको दुखिरहेको छ। अलि आराम गर्न हुन्छ?'},{type:'question',q:'「〜てもいいですか」への正しい返答は？',choices:['はい、休んでください','いいえ、わかりません','はい、ありがとう','いいえ、行きます'],ans:0,explain:'「〜てもいいですか」への返答は「はい、〜てください」または「いいえ、〜てはいけません」。'}]}];
+const RD=[{title:'安全掲示板',badge:'bb',docTitle:'【現場の安全ルール】',text:`◆ 必ず守ること
+
+1. ヘルメットをかぶること
+2. 安全靴を履くこと
+3. 高い所では安全帯をつけること
+
+◆ してはいけないこと
+
+・タバコは禁止
+・スマホを見ながら歩かない
+・走らない
+
+◆ 困ったときは
+
+すぐに監督に言ってください。`,questions:[{q:'高い所で必ずつけるものは？',choices:['安全帯','ヘルメット','手袋','安全靴'],ans:0,explain:'「高い所では安全帯をつけること」と書いてあります。'},{q:'「してはいけないこと」に入っていないのは？',choices:['タバコ','スマホを見ながら歩く','走る','水を飲む'],ans:3,explain:'水を飲むことは書いていません。タバコ・スマホ・走るの3つが禁止。'},{q:'困ったときどうすればいいですか？',choices:['すぐに監督に言う','自分で解決する','黙っている','家に帰る'],ans:0,explain:'「すぐに監督に言ってください」と書いてあります。'}]},{title:'作業予定表',badge:'bg',docTitle:'【今日の作業スケジュール】',text:`日付：〇月〇〇日
+
+8:00　　朝礼（ちょうれい）
+8:15　　作業開始
+10:00　　休憩（15分）
+12:00　　昼休み（1時間）
+13:00　　午後の作業開始
+15:00　　休憩（15分）
+17:00　　作業終了・片付け
+17:30　　終礼（しゅうれい）・解散`,questions:[{q:'昼休みは何時から何時間ですか？',choices:['12時から1時間','12時から30分','13時から1時間','11時から1時間'],ans:0,explain:'「12:00 昼休み（1時間）」と書いてあります。'},{q:'午前中の休憩は何分ですか？',choices:['15分','30分','1時間','10分'],ans:0,explain:'「10:00 休憩（15分）」と書いてあります。'},{q:'作業が終わった後に何をしますか？',choices:['片付けと終礼','すぐに帰る','掃除だけする','朝礼をする'],ans:0,explain:'「17:00 作業終了・片付け」「17:30 終礼・解散」と書いてあります。'}]},{title:'注意書き',badge:'br',docTitle:'【機械を使うときの注意】',text:`グラインダー使用上の注意
+
+・必ず保護メガネをつけること
+・手袋をつけること
+・周りに人がいないことを確認すること
+・使い終わったら電源を切ること
+・壊れていたら使わないこと
+
+わからないことは、監督に聞いてください。`,questions:[{q:'グラインダーを使うとき目に必要なものは？',choices:['保護メガネ','ヘルメット','サングラス','安全帯'],ans:0,explain:'「必ず保護メガネをつけること」と書いてあります。'},{q:'グラインダーを使い終わったら何をしますか？',choices:['電源を切る','そのままにする','片付ける','監督に返す'],ans:0,explain:'「使い終わったら電源を切ること」と書いてあります。'},{q:'機械が壊れていたらどうしますか？',choices:['使わない','自分で直す','そのまま使う','捨てる'],ans:0,explain:'「壊れていたら使わないこと」と書いてあります。'}]}];
+
+function sh(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}}
+function ssub(tab,id){const t=document.getElementById('tab-'+tab);t.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function sw(t){document.querySelectorAll('.tab').forEach((b,i)=>{b.classList.toggle('active',['vocab','grammar','conv','reading','mock'][i]===t)});['vocab','grammar','conv','reading','mock'].forEach(id=>document.getElementById('tab-'+id).classList.remove('active'));document.getElementById('tab-'+t).classList.add('active');}
+function speak(text,btn,lang){if(!window.speechSynthesis)return;window.speechSynthesis.cancel();if(btn&&btn.classList.contains('playing')){btn.classList.remove('playing');return;}const u=new SpeechSynthesisUtterance(text);u.lang=lang||'ja-JP';u.rate=(lang==='uz-UZ'||lang==='ne-NP')?0.85:0.9;if(btn){btn.classList.add('playing');u.onend=()=>btn.classList.remove('playing');u.onerror=()=>btn.classList.remove('playing');}window.speechSynthesis.speak(u);}
+function mkS(text,lang){const b=document.createElement('button');b.className='spk';if(lang&&lang!=='ja-JP')b.classList.add('uzspk');const L={'uz-UZ':'UZ▶','ne-NP':'NP▶'};b.innerHTML=L[lang]||'▶';b.title=lang==='uz-UZ'?'Ovozni tinglang':lang==='ne-NP'?'सुन्नुस्':'音声を聞く';b.onclick=(e)=>{e.stopPropagation();speak(text,b,lang);};return b;}
+const VCBN={tools:'bb',actions:'bg',safety4:'br',numbers:'ba',place:'bt',greet:'bgy'};
+const VCBT={tools:'道具・資材',actions:'動作・指示',safety4:'安全の基本',numbers:'数字・単位',place:'場所・方向',greet:'挨拶・返事'};
+let vCat='',vW=[],vI=0,vS=0,vM='jp';
+function vh(){ssub('vocab','v-home');}
+function vs(cat){vCat=cat;vM='jp';const ws=[...VD[cat]];sh(ws);vW=ws.slice(0,10);vI=0;vS=0;document.getElementById('v-title').textContent=VCBT[cat];document.getElementById('v-title').className='badge '+(VCBN[cat]||'bb');document.querySelectorAll('.mtab').forEach(b=>b.classList.remove('active'));document.getElementById('vm-jp').classList.add('active');ssub('vocab','v-quiz');vR();}
+function vm(m){vM=m;vI=0;vS=0;document.querySelectorAll('.mtab').forEach(b=>b.classList.remove('active'));document.getElementById('vm-'+m).classList.add('active');vR();}
+function vR(){const w=vW[vI];const np=NP[w.jp]||'';document.getElementById('v-bar').style.width=Math.round(((vI+1)/vW.length)*100)+'%';document.getElementById('v-prog').textContent=(vI+1)+'/'+vW.length;document.getElementById('v-fb').style.display='none';document.getElementById('v-nxt').style.display='none';
+if(vM==='jp'){const qEl=document.getElementById('v-q');qEl.innerHTML='';const s=document.createElement('span');s.textContent=w.jp;qEl.appendChild(s);qEl.appendChild(mkS(w.jp,'ja-JP'));document.getElementById('v-read').textContent=w.read;const h=document.getElementById('v-hint');h.innerHTML='';h.appendChild(document.createTextNode('Uz: '+w.uz+' '));h.appendChild(mkS(w.uz,'uz-UZ'));if(np){h.appendChild(document.createTextNode(' | NP: '+np+' '));h.appendChild(mkS(np,'ne-NP'));}const ex=document.getElementById('v-ex');ex.innerHTML='';ex.appendChild(document.createTextNode(w.ex));ex.appendChild(mkS(w.ex,'ja-JP'));vRC(w,'uz');
+}else if(vM==='uz'){document.getElementById('v-q').textContent=w.uz;document.getElementById('v-read').textContent='';const h=document.getElementById('v-hint');h.innerHTML='';h.appendChild(document.createTextNode('JP: '+w.jp+' '));h.appendChild(mkS(w.jp,'ja-JP'));if(np){h.appendChild(document.createTextNode(' | NP: '+np+' '));h.appendChild(mkS(np,'ne-NP'));}const ex=document.getElementById('v-ex');ex.innerHTML='';ex.appendChild(document.createTextNode(w.ex));ex.appendChild(mkS(w.ex,'ja-JP'));vRC(w,'jp');
+}else{const f=w.ex.replace(w.jp,'＿＿＿');document.getElementById('v-q').textContent=f;document.getElementById('v-read').textContent='';const h=document.getElementById('v-hint');h.innerHTML='';h.appendChild(document.createTextNode('Uz: '+w.uz+' '));h.appendChild(mkS(w.uz,'uz-UZ'));if(np){h.appendChild(document.createTextNode(' | NP: '+np+' '));h.appendChild(mkS(np,'ne-NP'));}document.getElementById('v-ex').textContent='';vRC(w,'jp');}}
+function vRC(w,k){const p=VD[vCat].filter(v=>v.jp!==w.jp);sh(p);const all=[w,...p.slice(0,3)];sh(all);const b=document.getElementById('v-choices');b.innerHTML='';all.forEach(item=>{const btn=document.createElement('button');btn.className='ch';const main=k==='uz'?item.uz:item.jp;const sub=k==='uz'?item.jp:item.uz;btn.innerHTML='<div class="cj">'+main+'</div><div class="cu">'+sub+'</div>';btn.onclick=()=>vCk(btn,item.jp===w.jp,w);b.appendChild(btn);});}
+function vCk(btn,ok,w){document.querySelectorAll('#v-choices .ch').forEach(b=>b.disabled=true);const fb=document.getElementById('v-fb');const np=NP[w.jp]||'';if(ok){btn.classList.add('ok');vS++;fb.className='fb ok';fb.innerHTML="<strong>正解！ To'g'ri! सही!</strong>　"+w.jp+' ('+w.read+') = '+w.uz;const sp=document.createElement('span');sp.style.cssText='display:inline-flex;gap:4px;align-items:center;margin-left:4px;vertical-align:middle;';sp.appendChild(mkS(w.jp,'ja-JP'));sp.appendChild(mkS(w.uz,'uz-UZ'));if(np)sp.appendChild(mkS(np,'ne-NP'));fb.appendChild(sp);}else{btn.classList.add('ng');fb.className='fb ng';fb.innerHTML='<strong>不正解。</strong>　正解：「'+w.jp+'」= '+w.uz;document.querySelectorAll('#v-choices .ch').forEach(b=>{if(b.querySelector('.cj').textContent===w.jp||b.querySelector('.cj').textContent===w.uz)b.classList.add('ok');});}fb.style.display='block';document.getElementById('v-nxt').style.display='block';}
+function vn(){vI++;if(vI>=vW.length){const t=vW.length,p=Math.round(vS/t*100);document.getElementById('v-rs').textContent=vS+'/'+t;document.getElementById('v-rok').textContent=vS;document.getElementById('v-rng').textContent=t-vS;document.getElementById('v-rp').textContent=p+'%';document.getElementById('v-rm').textContent=p>=90?'すばらしい！ Ajoyib! उत्कृष्ट!':p>=70?'よくできました！ Yaxshi! राम्रो!':p>=50?'もう少し練習を。':'基礎から復習しましょう。';ssub('vocab','v-result');}else vR();}
+function vr(){vs(vCat);}
+let gC='',gQ=[],gI=0,gS=0;
+const GT={te:'て形・指示',teiru:'〜ています',particles:'助詞の基本',want:'〜たい・〜ないで',count:'数え方・単位'};
+function gh(){ssub('grammar','g-home');}
+function gs(cat){gC=cat;gQ=[...GD[cat]];sh(gQ);gI=0;gS=0;document.getElementById('g-title').textContent=GT[cat];ssub('grammar','g-quiz');gR();}
+function gR(){const q=gQ[gI];document.getElementById('g-bar').style.width=Math.round(((gI+1)/gQ.length)*100)+'%';document.getElementById('g-prog').textContent=(gI+1)+'/'+gQ.length;document.getElementById('g-hint').textContent=q.hint;document.getElementById('g-q').textContent=q.q;document.getElementById('g-uz').textContent=q.uz;document.getElementById('g-fb').style.display='none';document.getElementById('g-nxt').style.display='none';const cs=[...q.choices];sh(cs);const b=document.getElementById('g-choices');b.innerHTML='';cs.forEach(c=>{const btn=document.createElement('button');btn.className='ch';btn.innerHTML='<div class="cj">'+c+'</div>';btn.onclick=()=>gCk(btn,c===q.ans,q);b.appendChild(btn);});}
+function gCk(btn,ok,q){document.querySelectorAll('#g-choices .ch').forEach(b=>b.disabled=true);const fb=document.getElementById('g-fb');if(ok){btn.classList.add('ok');gS++;fb.className='fb ok';fb.innerHTML='<strong>正解！</strong>　'+q.ex;}else{btn.classList.add('ng');fb.className='fb ng';fb.innerHTML='<strong>不正解。</strong>　正解：「'+q.ans+'」<br>'+q.ex;document.querySelectorAll('#g-choices .ch').forEach(b=>{if(b.querySelector('.cj').textContent===q.ans)b.classList.add('ok');});}fb.style.display='block';document.getElementById('g-nxt').style.display='block';}
+function gn(){gI++;if(gI>=gQ.length){const t=gQ.length,p=Math.round(gS/t*100);document.getElementById('g-rs').textContent=gS+'/'+t;document.getElementById('g-rok').textContent=gS;document.getElementById('g-rng').textContent=t-gS;document.getElementById('g-rp').textContent=p+'%';document.getElementById('g-rm').textContent=p>=90?'文法マスター！':p>=70?'よくできました！':p>=50?'もう少し練習を。':'文法の解説を読み直しましょう。';ssub('grammar','g-result');}else gR();}
+function gr(){gs(gC);}
+let cSI=0,cStI=0,cCo=0,cTo=0;
+function ch(){ssub('conv','c-home');}
+function cs(idx){cSI=idx;cStI=0;cCo=0;cTo=0;const sc=SCENARIOS[idx];document.getElementById('c-title').textContent=sc.title;document.getElementById('c-title').className='badge '+sc.badge;document.getElementById('c-dialog').innerHTML='';document.getElementById('c-cw').innerHTML='';document.getElementById('c-fb').style.display='none';document.getElementById('c-nxt').style.display='none';ssub('conv','c-scene');cp();}
+function cp(){const sc=SCENARIOS[cSI];if(cStI>=sc.steps.length){const p=Math.round(cCo/cTo*100);document.getElementById('c-rs').textContent=cCo+'/'+cTo;document.getElementById('c-rok').textContent=cCo;document.getElementById('c-rng').textContent=cTo-cCo;document.getElementById('c-rp').textContent=p+'%';document.getElementById('c-rm').textContent=p>=90?'完璧！ Ajoyib! उत्कृष्ट!':p>=70?'よくできました！':p>=50?'もう少し練習を。':'会話を読み返してみましょう。';ssub('conv','c-result');return;}
+const step=sc.steps[cStI];document.getElementById('c-bar').style.width=Math.round((cStI/sc.steps.length)*100)+'%';document.getElementById('c-fb').style.display='none';document.getElementById('c-nxt').style.display='none';document.getElementById('c-cw').innerHTML='';
+if(step.type==='narrate'){const d=document.getElementById('c-dialog');const p=document.createElement('div');p.className='narr';p.textContent=step.text;d.appendChild(p);cStI++;cp();}
+else if(step.type==='line'){const d=document.getElementById('c-dialog');const sp=document.createElement('p');sp.className='csp';sp.textContent=step.speaker;d.appendChild(sp);const b=document.createElement('div');b.className='cbub';const bs=document.createElement('span');bs.textContent=step.jp;b.appendChild(bs);b.appendChild(mkS(step.jp,'ja-JP'));d.appendChild(b);const u=document.createElement('div');u.className='cuz';const us=document.createElement('span');us.textContent=step.uz;u.appendChild(us);u.appendChild(mkS(step.uz,'uz-UZ'));if(step.np){const ns=document.createElement('span');ns.textContent=' | '+step.np;u.appendChild(ns);u.appendChild(mkS(step.np,'ne-NP'));}d.appendChild(u);cStI++;document.getElementById('c-nxt').style.display='block';}
+else if(step.type==='question'){const d=document.getElementById('c-dialog');const qp=document.createElement('div');qp.className='qbox';qp.textContent='Q: '+step.q;d.appendChild(qp);cTo++;const wrap=document.createElement('div');wrap.className='ccho';step.choices.forEach((c,i)=>{const btn=document.createElement('button');btn.className='cch';btn.textContent=c;btn.onclick=()=>ccCk(btn,i===step.ans,step,wrap);wrap.appendChild(btn);});document.getElementById('c-cw').appendChild(wrap);}}
+function ccCk(btn,ok,step,wrap){wrap.querySelectorAll('.cch').forEach(b=>b.disabled=true);const fb=document.getElementById('c-fb');if(ok){btn.classList.add('ok');cCo++;fb.className='fb ok';fb.innerHTML='<strong>正解！</strong>　'+step.explain;}else{btn.classList.add('ng');fb.className='fb ng';fb.innerHTML='<strong>不正解。</strong>　'+step.explain;wrap.querySelectorAll('.cch')[step.ans].classList.add('rev');}fb.style.display='block';cStI++;document.getElementById('c-nxt').style.display='block';}
+function cn(){cp();}
+function cr(){cs(cSI);}
+let rI=0,rQI=0,rS=0;
+function rh(){ssub('reading','r-home');}
+function rs(idx){rI=idx;rQI=0;rS=0;const rd=RD[idx];document.getElementById('r-title').textContent=rd.title;document.getElementById('r-title').className='badge '+rd.badge;document.getElementById('r-dtitle').textContent=rd.docTitle;document.getElementById('r-text').textContent=rd.text;document.getElementById('r-bar').style.width='0%';document.getElementById('r-qs').innerHTML='';document.getElementById('r-nxt').style.display='none';document.getElementById('r-done').style.display='none';ssub('reading','r-quiz');rRQ();}
+function rRQ(){const rd=RD[rI];const q=rd.questions[rQI];document.getElementById('r-bar').style.width=Math.round(((rQI+1)/rd.questions.length)*100)+'%';const qs=document.getElementById('r-qs');qs.innerHTML='';const qp=document.createElement('div');qp.className='qbox';qp.textContent='Q'+(rQI+1)+': '+q.q;qs.appendChild(qp);const grid=document.createElement('div');grid.className='choices';q.choices.forEach((c,i)=>{const btn=document.createElement('button');btn.className='ch';btn.innerHTML='<div class="cj">'+c+'</div>';btn.onclick=()=>rCk(btn,i===q.ans,q,grid);grid.appendChild(btn);});qs.appendChild(grid);const fb=document.createElement('div');fb.className='fb';fb.id='r-fb-q';qs.appendChild(fb);}
+function rCk(btn,ok,q,grid){grid.querySelectorAll('.ch').forEach(b=>b.disabled=true);const fb=document.getElementById('r-fb-q');if(ok){btn.classList.add('ok');rS++;fb.className='fb ok';fb.innerHTML='<strong>正解！</strong>　'+q.explain;}else{btn.classList.add('ng');fb.className='fb ng';fb.innerHTML='<strong>不正解。</strong>　'+q.explain;grid.querySelectorAll('.ch')[q.ans].classList.add('ok');}fb.style.display='block';const rd=RD[rI];if(rQI<rd.questions.length-1){document.getElementById('r-nxt').style.display='block';}else{document.getElementById('r-done').style.display='block';}}
+function rn(){rQI++;document.getElementById('r-nxt').style.display='none';rRQ();}
+function rres(){const t=RD[rI].questions.length,p=Math.round(rS/t*100);document.getElementById('r-rs').textContent=rS+'/'+t;document.getElementById('r-rok').textContent=rS;document.getElementById('r-rng').textContent=t-rS;document.getElementById('r-rp').textContent=p+'%';document.getElementById('r-rm').textContent=p>=75?'よく読めました！':p>=50?'もう一度読んでみましょう。':'文章をゆっくり読み返してください。';ssub('reading','r-result');}
+function rr(){rs(rI);}
+let mQs=[],mI=0,mS=0,mVS=0,mGS=0,mRS=0,mVT=0,mGT=0,mRT=0;
+function mh(){ssub('mock','m-home');}
+function ms(){const aV=Object.values(VD).flat();sh(aV);const vSel=aV.slice(0,8);const aG=Object.values(GD).flat();sh(aG);const gSel=aG.slice(0,6);const rdSel=[];RD.forEach(rd=>{const q=rd.questions[Math.floor(Math.random()*rd.questions.length)];rdSel.push({...q,_type:'reading',_text:rd.docTitle});});mQs=[...vSel.map(w=>({_type:'vocab',_w:w})),...gSel.map(g=>({_type:'grammar',_g:g})),...rdSel];sh(mQs);mI=0;mS=0;mVS=0;mGS=0;mRS=0;mVT=0;mGT=0;mRT=0;ssub('mock','m-quiz');mR();}
+function mR(){const item=mQs[mI];document.getElementById('m-bar').style.width=Math.round(((mI+1)/mQs.length)*100)+'%';document.getElementById('m-prog').textContent=(mI+1)+'/'+mQs.length;document.getElementById('m-fb').style.display='none';document.getElementById('m-nxt').style.display='none';
+if(item._type==='vocab'){const w=item._w;mVT++;document.getElementById('m-qt').textContent='語彙';document.getElementById('m-qt').className='badge bb';document.getElementById('m-hint').textContent='日本語→ウズベク語';document.getElementById('m-q').textContent=w.jp+'（'+w.read+'）';document.getElementById('m-uz').textContent='';document.getElementById('m-ex').textContent=w.ex;const aV=Object.values(VD).flat();const p=aV.filter(v=>v.jp!==w.jp);sh(p);const ch=[w.uz,...p.slice(0,3).map(v=>v.uz)];sh(ch);mRC(ch,w.uz,w.jp+' = '+w.uz,'vocab');}
+else if(item._type==='grammar'){const g=item._g;mGT++;document.getElementById('m-qt').textContent='文法';document.getElementById('m-qt').className='badge bgy';document.getElementById('m-hint').textContent=g.hint;document.getElementById('m-q').textContent=g.q;document.getElementById('m-uz').textContent=g.uz;document.getElementById('m-ex').textContent='';const cs=[...g.choices];sh(cs);mRC(cs,g.ans,g.ex,'grammar');}
+else{mRT++;document.getElementById('m-qt').textContent='読解';document.getElementById('m-qt').className='badge bg';document.getElementById('m-hint').textContent='【'+item._text+'】';document.getElementById('m-q').textContent=item.q;document.getElementById('m-uz').textContent='';document.getElementById('m-ex').textContent='';const cs=[...item.choices];sh(cs);mRC(cs,item.choices[item.ans],item.explain,'reading');}}
+function mRC(ch,ansT,explain,type){const b=document.getElementById('m-choices');b.innerHTML='';ch.forEach(c=>{const btn=document.createElement('button');btn.className='ch';btn.innerHTML='<div class="cj">'+c+'</div>';btn.onclick=()=>mCk(btn,c===ansT,ansT,explain,type);b.appendChild(btn);});}
+function mCk(btn,ok,ansT,explain,type){document.querySelectorAll('#m-choices .ch').forEach(b=>b.disabled=true);const fb=document.getElementById('m-fb');if(ok){btn.classList.add('ok');mS++;if(type==='vocab')mVS++;else if(type==='grammar')mGS++;else mRS++;fb.className='fb ok';fb.innerHTML="<strong>正解！ To'g'ri! सही!</strong>　"+explain;}else{btn.classList.add('ng');fb.className='fb ng';fb.innerHTML='<strong>不正解。</strong>　正解：「'+ansT+'」<br>'+explain;document.querySelectorAll('#m-choices .ch').forEach(b=>{if(b.querySelector('.cj').textContent===ansT)b.classList.add('ok');});}fb.style.display='block';document.getElementById('m-nxt').style.display='block';}
+function mn(){mI++;if(mI>=mQs.length){const t=mQs.length,p=Math.round(mS/t*100);document.getElementById('m-rs').textContent=mS+'/'+t;document.getElementById('m-rok').textContent=mS;document.getElementById('m-rng').textContent=t-mS;document.getElementById('m-rp').textContent=p+'%';document.getElementById('m-rm').textContent=p>=80?'N4合格レベル！ Ajoyib!':p>=60?'もう少し！':'各機能で復習してください。';document.getElementById('m-bd').innerHTML='語彙: '+mVS+'/'+mVT+'　文法: '+mGS+'/'+mGT+'　読解: '+mRS+'/'+mRT;ssub('mock','m-result');}else mR();}
+</script>
+</body>
+</html>
